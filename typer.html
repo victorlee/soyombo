@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soyombo script typer</title>
+<meta charset="utf-8">
+
+    <script type="text/javascript">
+	  
+var conversion = {
+"A":"𑩐",
+"i":"𑩑",
+"u":"𑩓",
+"ue":"𑩒",
+"e":"𑩔",
+"o":"𑩕",
+"oe":"𑩖",
+"ai": "𑩗",
+"au": "𑩘",
+"R": "𑩙",
+"L": "𑩚",
+"_":"𑩛",
+"k": "𑩜",
+"kh": "𑩝",
+"g": "𑩞",
+"gh": "𑩟",
+"ng": "𑩠",
+"c": "𑩡",
+"ch": "𑩢",
+"j": "𑩣",
+"jh": "𑩤",
+"ny": "𑩥",
+"T": "𑩦",
+"Th": "𑩧",
+"D": "𑩨",
+"Dh": "𑩩",
+"N": "𑩪",
+"t": "𑩫",
+"th": "𑩬",
+"d": "𑩭",
+"dh": "𑩮",
+"n": "𑩯",
+"p": "𑩰",
+"ph": "𑩱",
+"b": "𑩲",
+"bh": "𑩳",
+"m": "𑩴",
+"ts":"𑩵",
+"tsh":"𑩶",
+"dz":"𑩷",
+"zh":"𑩸",
+"z":"𑩹",
+"-a":"𑩺", 
+"y": "𑩻",
+"r": "𑩼",
+"l": "𑩽",
+"v": "𑩾",
+"sh": "𑩿",
+"S": "𑪀",
+"s": "𑪁",
+"h": "𑪂",
+"ks":"𑪃",
+"J":"𑪄",
+"U":"𑪅",
+"r-":"𑪆",
+"l-":"𑪇",
+"sh-":"𑪈",
+"s-":"𑪉",
+"-k":"𑪊",
+"-g":"𑪋",
+"-ng":"𑪌",
+"-d":"𑪍",
+"-n":"𑪎",
+"-b":"𑪏",
+"-m":"𑪐",
+"-r":"𑪑",
+"-l":"𑪒",
+"-sh":"𑪓",
+"-s":"𑪔",
+"--a":"𑪕",
+"M": "𑪖",
+"H": "𑪗",
+"G":"𑪘",
+"+":"𑪙",
+".":"𑪚",
+"|":"𑪛",
+"||":"𑪜",
+"__":"𑪝",
+"1":"𑪞",
+"2":"𑪟",
+"3":"𑪠",
+"4":"𑪡",
+"5":"𑪢",
+
+        };
+
+ var maxLength = Object.keys(conversion)
+    .reduce((a, b) => a.length > b.length ? a : b) // get the longest word
+    .length; // and it's length
+  
+  function convert (text) {
+    var converted = "";
+    var cur = 0;
+    while (cur < text.length) {
+      var testedPhoneme;
+      var symbol = undefined;
+      for (var length = maxLength; length > 0; length --) {
+        testedPhoneme = text.substr(cur, length);
+        if (conversion[testedPhoneme]) {
+          symbol = conversion[testedPhoneme];
+          break; // stop the loop
+        }
+      }
+      if (symbol) {
+        converted += symbol;
+        cur += testedPhoneme.length;
+      }
+      else {
+        converted += text[cur]
+        cur++;
+      }
+    }
+    return converted
+  }
+
+  function onInputTextChange(txt) {
+    var outputTextareaElem = document.getElementById("output_textarea");
+    var div = document.createElement("div");
+    var outputHtmlEntities = convert(txt);
+    div.innerHTML = outputHtmlEntities;
+    outputTextareaElem.value = div.innerText;
+  }
+
+
+        function select() {
+          const input = document.getElementById('input_textarea');
+          input.focus();
+          input.select();
+        }   
+        function copytext() {
+          var copyText = document.getElementById("output_textarea");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999)
+          document.execCommand("copy");
+        }
+
+    </script>
+    
+<style>
+@import url(https://victorlee.github.io/fonts/stylesheet.css);
+html {
+  font-family:arial;
+}
+table {
+  border-collapse: collapse;
+  width: 90%;
+  font-family: Arial, noto sans soyombo;
+  font-size: 20px;
+}
+td, th {
+  border: 1px solid #AAA;
+  text-align: center;
+  padding: 1px;
+}
+textarea {
+	font-size: 15pt;
+	font-family: Arial, noto sans soyombo;
+        width: 96%;
+} 
+.note {
+  border: 1px solid #DDD;
+  width: 30%;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+</style>
+
+
+</head>
+<body>  
+
+<body>  
+
+<center><h1 class="text-center">Soyombo script</h1>
+ 
+<center>
+<table>
+<thead>
+<tr>
+<th>	
+<button onclick="select('input_textarea')">Select all</button>
+<button onclick="document.getElementById('input_textarea').value = ''">Clear</button>
+</th>
+<th>
+<button onclick="copytext()">Copy text</button>
+</th>
+<th>Conversion table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<textarea
+id="input_textarea"
+autofocus=""
+placeholder="Input text here"
+rows="10"
+oninput="onInputTextChange(this.value)"></textarea>    
+</td>
+<td>
+<textarea rows="6" placeholder="output" id="output_textarea" style="font-size: 25pt;"></textarea>    
+</td>
+<td>
+
+<center>
+<div style="overflow-y: scroll; height:230px; width:170px">
+
+
+
+
+
+<table>
+<thead>
+<tr>
+<th>in.</th>
+<th>out.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>𑩐</td>
+</tr>
+<tr>
+<td>i</td>
+<td>𑩑</td>
+</tr>
+<tr>
+<td>u</td>
+<td>𑩓</td>
+</tr>
+<tr>
+<td>ue</td>
+<td>𑩒</td>
+</tr>
+<tr>
+<td>e</td>
+<td>𑩔</td>
+</tr>
+<tr>
+<td>o</td>
+<td>𑩕</td>
+</tr>
+<tr>
+<td>oe</td>
+<td>𑩖</td>
+</tr>
+<tr>
+<td>ai</td>
+<td>𑩗</td>
+</tr>
+<tr>
+<td>au</td>
+<td>𑩘</td>
+</tr>
+<tr>
+<td>R</td>
+<td>𑩙</td>
+</tr>
+<tr>
+<td>L</td>
+<td>𑩚</td>
+</tr>
+<tr>
+<td>_</td>
+<td>𑩛</td>
+</tr>
+<tr>
+<td>k</td>
+<td>𑩜</td>
+</tr>
+<tr>
+<td>kh</td>
+<td>𑩝</td>
+</tr>
+<tr>
+<td>g</td>
+<td>𑩞</td>
+</tr>
+<tr>
+<td>gh</td>
+<td>𑩟</td>
+</tr>
+<tr>
+<td>ng</td>
+<td>𑩠</td>
+</tr>
+<tr>
+<td>c</td>
+<td>𑩡</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>𑩢</td>
+</tr>
+<tr>
+<td>j</td>
+<td>𑩣</td>
+</tr>
+<tr>
+<td>jh</td>
+<td>𑩤</td>
+</tr>
+<tr>
+<td>ny</td>
+<td>𑩥</td>
+</tr>
+<tr>
+<td>T</td>
+<td>𑩦</td>
+</tr>
+<tr>
+<td>Th</td>
+<td>𑩧</td>
+</tr>
+<tr>
+<td>D</td>
+<td>𑩨</td>
+</tr>
+<tr>
+<td>Dh</td>
+<td>𑩩</td>
+</tr>
+<tr>
+<td>N</td>
+<td>𑩪</td>
+</tr>
+<tr>
+<td>t</td>
+<td>𑩫</td>
+</tr>
+<tr>
+<td>th</td>
+<td>𑩬</td>
+</tr>
+<tr>
+<td>d</td>
+<td>𑩭</td>
+</tr>
+<tr>
+<td>dh</td>
+<td>𑩮</td>
+</tr>
+<tr>
+<td>n</td>
+<td>𑩯</td>
+</tr>
+<tr>
+<td>p</td>
+<td>𑩰</td>
+</tr>
+<tr>
+<td>ph</td>
+<td>𑩱</td>
+</tr>
+<tr>
+<td>b</td>
+<td>𑩲</td>
+</tr>
+<tr>
+<td>bh</td>
+<td>𑩳</td>
+</tr>
+<tr>
+<td>m</td>
+<td>𑩴</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>𑩵</td>
+</tr>
+<tr>
+<td>tsh</td>
+<td>𑩶</td>
+</tr>
+<tr>
+<td>dz</td>
+<td>𑩷</td>
+</tr>
+<tr>
+<td>zh</td>
+<td>𑩸</td>
+</tr>
+<tr>
+<td>z</td>
+<td>𑩹</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>𑩺 </td>
+</tr>
+<tr>
+<td>y</td>
+<td>𑩻</td>
+</tr>
+<tr>
+<td>r</td>
+<td>𑩼</td>
+</tr>
+<tr>
+<td>l</td>
+<td>𑩽</td>
+</tr>
+<tr>
+<td>v</td>
+<td>𑩾</td>
+</tr>
+<tr>
+<td>sh</td>
+<td>𑩿</td>
+</tr>
+<tr>
+<td>S</td>
+<td>𑪀</td>
+</tr>
+<tr>
+<td>s</td>
+<td>𑪁</td>
+</tr>
+<tr>
+<td>h</td>
+<td>𑪂</td>
+</tr>
+<tr>
+<td>ks</td>
+<td>𑪃</td>
+</tr>
+<tr>
+<td>J</td>
+<td>𑪄</td>
+</tr>
+<tr>
+<td>U</td>
+<td>𑪅</td>
+</tr>
+<tr>
+<td>r-</td>
+<td>𑪆</td>
+</tr>
+<tr>
+<td>l-</td>
+<td>𑪇</td>
+</tr>
+<tr>
+<td>sh-</td>
+<td>𑪈</td>
+</tr>
+<tr>
+<td>s-</td>
+<td>𑪉</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>𑪊</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>𑪋</td>
+</tr>
+<tr>
+<td>-ng</td>
+<td>𑪌</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>𑪍</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>𑪎</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>𑪏</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>𑪐</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>𑪑</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>𑪒</td>
+</tr>
+<tr>
+<td>-sh</td>
+<td>𑪓</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>𑪔</td>
+</tr>
+<tr>
+<td>--a</td>
+<td>𑪕</td>
+</tr>
+<tr>
+<td>M</td>
+<td>𑪖</td>
+</tr>
+<tr>
+<td>H</td>
+<td>𑪗</td>
+</tr>
+<tr>
+<td>G</td>
+<td>𑪘</td>
+</tr>
+<tr>
+<td>+</td>
+<td>𑪙</td>
+</tr>
+<tr>
+<td>.</td>
+<td>𑪚</td>
+</tr>
+<tr>
+<td>|</td>
+<td>𑪛</td>
+</tr>
+<tr>
+<td>||</td>
+<td>𑪜</td>
+</tr>
+<tr>
+<td>__</td>
+<td>𑪝</td>
+</tr>
+<tr>
+<td>1</td>
+<td>𑪞</td>
+</tr>
+<tr>
+<td>2</td>
+<td>𑪟</td>
+</tr>
+<tr>
+<td>3</td>
+<td>𑪠</td>
+</tr>
+<tr>
+<td>4</td>
+<td>𑪡</td>
+</tr>
+<tr>
+<td>5</td>
+<td>𑪢</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+</div>
+</center>
+
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>more info: <a href="https://en.wikipedia.org/wiki/Soyombo_script">Wikipedia</a><br>more characters: <a href="https://www.unicode.org/charts/PDF/U11A50.pdf">unicode.org</a></p>
+</center>
+
+
+</body>
+</html>
